@@ -16,5 +16,12 @@
   .app{
     zoom:0.7;
   }
+}
+
+@media screen and (max-width: 320px)   {
+
+  .app{
+    zoom:0.55;
+  }
 
 }
