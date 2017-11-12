@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { GameService, Board } from '../../services/game.service';
+import { GameService, BoardDone, Winning } from '../../services/game.service';
 
 @Component({
   selector: 'board',
@@ -17,14 +17,19 @@ export class BoardComponent implements OnInit {
   @Input() id: number;
   @Input() disabled: boolean;
   @Input() player: string;
-  @Output() done: EventEmitter<Board> = new EventEmitter();
+  @Output() done: EventEmitter<BoardDone> = new EventEmitter();
   @Output() nextStep: EventEmitter<number> = new EventEmitter();
 
   constructor(private gameService: GameService) { }
 
   ngOnInit() {
     this.gameService.restartGame$.subscribe(() => this.resetBoard());
-    this.gameService.winningPositions$.subscribe((positions:number[])=>this.winnerCells = positions);
+
+    this.gameService.winningPositions$.subscribe((winning:Winning)=>{
+        if(winning.id === this.id){
+            this.winnerCells = winning.cells;
+        }
+    });
   }
 
   move(position) {
@@ -37,7 +42,7 @@ export class BoardComponent implements OnInit {
 
       this.cells[position] = this.player;
 
-      if (this.gameService.isWinningMove(this.cells)) {
+      if (this.gameService.isWinningMove(this.cells, this.id)) {
         this.winner = this.player;
         this.emitBoardDone();
 

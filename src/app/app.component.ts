@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {GameService, Board} from './services/game.service';
+import {GameService, BoardDone} from './services/game.service';
 
 @Component({
   selector: 'app',
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit{
     this.restartGame();
   }
 
-  handleBoardDone(boardData: Board){
+  handleBoardDone(boardData: BoardDone){
     this.boards[boardData.id] = boardData.winner;
 
     if(this.gameService.isWinningMove(this.boards)){

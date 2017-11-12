@@ -10,10 +10,15 @@ const winningConditions = [
   [0, 4, 8], [2, 4, 6]             // diagonal
 ];
 
-export class Board{
+export class BoardDone{
   winner:string;
   id: number;
-};
+}
+
+export class Winning{
+  cells: number[];
+  id?: number;
+}
 
 @Injectable()
 export class GameService {
@@ -22,7 +27,7 @@ export class GameService {
   private restartGameSource = new BehaviorSubject<void>(null);
 
   winningPositions$: Observable<any>;
-  private winningPositionsSource = new Subject<number[]>();
+  private winningPositionsSource = new Subject<Winning>();
 
   constructor() {
     this.restartGame$ = this.restartGameSource.asObservable();
@@ -34,12 +39,17 @@ export class GameService {
     this.restartGameSource.next(null);
   }
 
-  isWinningMove(grid: string[]): boolean {
+  isWinningMove(grid: string[], boardId?: number): boolean {
     for (const condition of winningConditions) {
       if (grid[condition[0]]
         && grid[condition[0]] === grid[condition[1]]
         && grid[condition[1]] === grid[condition[2]]) {
-        this.winningPositionsSource.next([condition[0], condition[1], condition[2]]);
+
+        this.winningPositionsSource.next({
+           cells:[condition[0], condition[1], condition[2]],
+           id:boardId
+        });
+
         return true;
       }
     }
