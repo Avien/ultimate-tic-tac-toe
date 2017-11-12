@@ -13,7 +13,7 @@ export class AppComponent implements OnInit{
   gameWinner: string;
   currentBoard: number;
   player: string;
-  enableAll: boolean = false;
+  enableAll: boolean;
 
   constructor(private gameService: GameService){
 
@@ -45,6 +45,7 @@ export class AppComponent implements OnInit{
 
   restartGame(){
     this.currentBoard = 4;
+    this.enableAll = true;
     this.boards = Array(9).fill(null);
     this.player = 'X';
     this.gameService.restartGame();
