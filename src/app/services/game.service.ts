@@ -10,7 +10,7 @@ const winningConditions = [
   [0, 4, 8], [2, 4, 6]             // diagonal
 ];
 
-export class BoardDone{
+export class Board{
   winner:string;
   id: number;
 };

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { GameService, BoardDone } from '../../services/game.service';
+import { GameService, Board } from '../../services/game.service';
 
 @Component({
   selector: 'board',
@@ -17,7 +17,7 @@ export class BoardComponent implements OnInit {
   @Input() id: number;
   @Input() disabled: boolean;
   @Input() player: string;
-  @Output() done: EventEmitter<BoardDone> = new EventEmitter();
+  @Output() done: EventEmitter<Board> = new EventEmitter();
   @Output() nextStep: EventEmitter<number> = new EventEmitter();
 
   constructor(private gameService: GameService) { }
