@@ -1,0 +1,12 @@
+.cell{
+  width: 45px;
+  height: 45px;
+  border: 1px solid gray;
+  float: left;
+  font-size: 30px;
+  text-align: center;
+
+  &.winner{
+    color: blue;
+  }
+}

@@ -1,0 +1,19 @@
+
+<div class="app">
+  <h1>
+    Ultimate Tic Tac Toe
+  </h1>
+
+  <div class="row" *ngFor="let row of [0,1,2]">
+    <board *ngFor="let col of [0,1,2]"
+           [id]="col+row*3"
+           [disabled]="col+row*3 !== currentBoard && !enableAll"
+           [player]="player"
+            (done)="handleBoardDone($event)"
+            (nextStep)="handleNextStep($event)">
+    </board>
+  </div>
+  <button class="restart" (click)="restartGame()">New Game</button>
+</div>
+
+

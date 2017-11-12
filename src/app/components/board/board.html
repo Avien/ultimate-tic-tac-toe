@@ -1,0 +1,10 @@
+<div class="board" [ngClass]="{'disabled': disabled || finished, 'tie': finished, 'x-won': winner === 'X', 'o-won':winner === 'O' }">
+  <div class="status" >{{status}}</div>
+  <div class="row" *ngFor="let row of [0,1,2]">
+    <cell *ngFor="let col of [0,1,2]"
+          [state]="cells[col+row*3]"
+          (click)="move(col+row*3)"
+          [winner]="winnerCells.includes(col+row*3)">
+    </cell>
+  </div>
+</div>

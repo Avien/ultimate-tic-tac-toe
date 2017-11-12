@@ -1,0 +1,31 @@
+.board{
+
+  background-color: #20a3c3;
+  color: #fff;
+  float: left;
+  margin: 15px;
+
+  .row{
+    clear:both;
+  }
+
+  .status{
+    text-align: center;
+  }
+
+  &.disabled{
+    opacity: 0.5;
+  }
+
+  &.tie{
+    background-color: #000000;
+  }
+
+  &.x-won{
+    background-color: red;
+  }
+
+  &.o-won{
+    background-color: green;
+  }
+}
