@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {GameService, BoardDone} from './services/game.service';
+import { Component, OnInit } from '@angular/core';
+import { GameService, BoardDone } from './services/game.service';
 
 @Component({
   selector: 'app',
@@ -9,7 +9,6 @@ import {GameService, BoardDone} from './services/game.service';
 export class AppComponent implements OnInit{
 
   boards: string[];
-  winnerBoards: number[];
   gameWinner: string;
   currentBoard: number;
   player: string;
