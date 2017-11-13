@@ -75,5 +75,6 @@ export class BoardComponent implements OnInit {
     this.winner = null;
     this.winnerCells = [];
     this.finished = false;
+    this.disabled = false;
   }
 }

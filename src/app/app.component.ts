@@ -27,11 +27,16 @@ export class AppComponent implements OnInit{
     this.boards[boardData.id] = boardData.winner;
 
     if(this.gameService.isWinningMove(this.boards)){
-      alert(this.player + ' Has won the game!!!');
+      this.gameWinner = this.player;
     }
   }
 
   handleNextStep(position:number){
+
+    if(this.gameWinner){
+      setTimeout(()=>alert(this.player + ' Has won the game!!!'));
+      return;
+    }
 
     this.player = this.player === 'X' ? 'O' : 'X';
 
@@ -48,6 +53,7 @@ export class AppComponent implements OnInit{
     this.enableAll = true;
     this.boards = Array(9).fill(null);
     this.player = 'X';
+    this.gameWinner = null;
     this.gameService.restartGame();
   }
 }
